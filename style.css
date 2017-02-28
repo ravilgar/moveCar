@@ -1,0 +1,41 @@
+h1{
+	color: green;
+	background-color: yellow;
+	text-align: center;
+	width: 300px;
+	margin: 0 auto;
+}
+img{
+	position: relative;
+	left: 800px;
+}
+
+.moveImg{
+	animation-name: moveCar;
+	animation-duration: 8s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes moveCar {
+    from {left: 800px;}
+    to {left: -600px;}
+}
+
+/* Standard syntax */
+@keyframes moveCar {
+    from {left: 800px;}
+    to {left: -600px;}
+}
+
+.divRef{
+	transform: scale(-1, 1);
+}
+.reflect{
+	animation-name: moveBack;
+	animation-duration: 8s;
+}
+
+/* Standard syntax */
+@keyframes moveBack {
+    to {left: -600px;}
+}
