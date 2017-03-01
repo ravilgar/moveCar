@@ -58,13 +58,15 @@ var moveEvents = {
         events: ["touchstart", "mouseover"],
         purpose: moveAhead,
         conditionOfMouseover1: true,
-        conditionOfMouseout2: false
+        conditionOfMouseout2: false,
+        step: 3
     },
     back: {
         events: ["touchend", "mouseout"],
         purpose: moveBack,
         conditionOfMouseover1: false,
-        conditionOfMouseout2: true
+        conditionOfMouseout2: true,
+        step: -3
     }
 };
 
@@ -88,19 +90,19 @@ Object.keys(moveEvents).forEach(function(key) {
             conditionOfMouseover = moveEvents[key].conditionOfMouseover1;
             conditionOfMouseout = moveEvents[key].conditionOfMouseout2;
 
-            move(moveEvents[key].purpose);
+            move(moveEvents[key].step, moveEvents[key].purpose);
         });
     }
 });
 
 // Функция задает движение машинке
-function move(direction) {
+function move(step, direction) {
     // Вызов функции move через каждые 5 миллисекунд
     var id = setInterval(move, 5);
 
     function move() {
         // направление выставляем по ходу движения
-        direction()[2];
+        direction()[1];
         // Условие прекращения движения
         var condition = direction()[0];
         if (condition) {
@@ -110,7 +112,7 @@ function move(direction) {
             auto.classList.toggle("reflect");
         } else {
             // Меняeм значение текущей позиции для машины
-            direction()[1];
+            pos += step;
             auto.style.left = pos + 'px';
         }
     }
@@ -119,10 +121,10 @@ function move(direction) {
 // При движении вперед
 function moveAhead() {
     var condition = Boolean(pos >= (maxWidth - auto.clientWidth) || !conditionOfMouseover);
-    return [condition, pos++, auto.classList.add("reflect")];
+    return [condition, auto.classList.add("reflect")];
 }
 // При движении назад
 function moveBack() {
     var condition = Boolean(pos <= 0 || !conditionOfMouseout);
-    return [condition, pos--, auto.classList.remove("reflect")];
+    return [condition, auto.classList.remove("reflect")];
 }
