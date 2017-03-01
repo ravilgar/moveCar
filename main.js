@@ -99,8 +99,6 @@ function move(direction) {
     var id = setInterval(move, 5);
 
     function move() {
-        console.log('maxWidth = ' + maxWidth);
-        console.log('pos = ' + pos);
         if (direction()[0]) {
             // Остановим вызов функции move
             clearInterval(id);
