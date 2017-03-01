@@ -115,10 +115,10 @@ function move(direction) {
 // При движении вперед
 function moveAhead() {
     var condition = Boolean(pos >= (maxWidth - auto.clientWidth) || !conditionOfMouseover);
-    return [condition, pos++];
+    return [condition, pos++, auto.classList.add("reflect")];
 }
 // При движении назад
 function moveBack() {
     var condition = Boolean(pos <= 0 || !conditionOfMouseout);
-    return [condition, pos--];
+    return [condition, pos--, auto.classList.remove("reflect")];
 }
