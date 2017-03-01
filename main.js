@@ -99,7 +99,11 @@ function move(direction) {
     var id = setInterval(move, 5);
 
     function move() {
-        if (direction()[0]) {
+        // направление выставляем по ходу движения
+        direction()[2];
+        // Условие прекращения движения
+        var condition = direction()[0];
+        if (condition) {
             // Остановим вызов функции move
             clearInterval(id);
             // Добавляем класс для поворота машины вокруг оси
